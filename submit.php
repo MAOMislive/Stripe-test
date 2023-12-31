@@ -6,17 +6,15 @@ if (isset($_POST['stripeToken'])) {
 
     $token = $_POST['stripeToken'];
     $amount = $_POST['amount'];
-    $user_id = $_POST['user_id'];
-    $email = $_POST['email'];
-    // $amount = $_POST['amount'];
+    
     $charge = \Stripe\Charge::create(array(
         "amount" => $amount * 100, // Convert amount to paisa
         "currency" => "inr",
-        "description" => "Posting a Funding Research Project",
+        "description" => "YOUR_PROJECT_TITLE",
         "source" => $token,
     ));
 
-    // Display receipt
-    echo "<script>window.location.href = '" . $charge->receipt_url . "';</script>";
+    // Generate receipt 
+    echo "<script>window.location.href = '" . $charge->receipt_url . "';</script>"; //this script code will lead to open the receipt in the current page.
 }
 ?>
